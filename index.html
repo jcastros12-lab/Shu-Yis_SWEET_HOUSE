@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shu&amp;Yis Sweet House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Estilos de la página -->
+  <style>
+/* =========================================================
+   Shu&Yis Sweet House - Estilos
+   Orden: 1) Variables  2) Base  3) Componentes  4) Secciones
+   ========================================================= */
+/* ---------- 1) VARIABLES (colores y tipografías) ---------- */
+:root {
+  --chocolate: #4A2C23;
+  --chocolate-oscuro: #2E1912;
+  --crema: #F6EDE0;
+  --beige: #EDE0CD;
+  --caramelo: #C98B4B;
+  --caramelo-texto: #8A5A24;
+  --salvia: #9AA58B;
+  --salvia-texto: #5E6B52;
+
+  --fuente-titulos: 'Fraunces', Georgia, serif;
+  --fuente-texto: 'DM Sans', system-ui, sans-serif;
+  --fuente-logo: 'Dancing Script', cursive;
+}
+
+/* ---------- 2) BASE ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--chocolate-oscuro);
+  font-family: var(--fuente-texto);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  color: var(--chocolate);
+}
+
+h1 {
+  font-size: clamp(40px, 6vw, 60px);
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.12;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--chocolate);
+}
+
+a:hover {
+  color: var(--caramelo-texto);
+}
+
+/* Contenedor centrado: limita el ancho del contenido */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Espacio vertical estándar de cada sección */
+.seccion {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.seccion--beige {
+  background: var(--beige);
+}
+
+.seccion--oscura {
+  background: var(--chocolate);
+  color: var(--crema);
+}
+
+.seccion--oscura h2 {
+  color: var(--crema);
+}
+
+.seccion__titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+/* ---------- 3) COMPONENTES ---------- */
+/* Etiqueta pequeña sobre los títulos */
+.etiqueta {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--salvia-texto);
+}
+
+.etiqueta--caramelo {
+  color: var(--caramelo);
+}
+
+/* Botones */
+.boton {
+  display: inline-block;
+  padding: 16px 30px;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton--oscuro {
+  background: var(--chocolate);
+  color: var(--crema);
+}
+
+.boton--oscuro:hover {
+  background: var(--chocolate-oscuro);
+  color: var(--crema);
+}
+
+.boton--caramelo {
+  background: var(--caramelo);
+  color: var(--chocolate-oscuro);
+}
+
+.boton--caramelo:hover {
+  color: var(--chocolate-oscuro);
+  filter: brightness(0.95);
+}
+
+.boton--chico {
+  padding: 12px 22px;
+}
+
+/* Fotos: muestran un recuadro de relleno hasta que pongas la imagen */
+.foto {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #E3D3BC;
+  border: 2px dashed #B9A07F;
+  border-radius: 16px;
+  color: #6B4A3A;
+  text-align: center;
+}
+
+.foto--oscura {
+  background: #5C3A30;
+  border-color: #A98B6E;
+  color: #EBD9C2;
+}
+
+.foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cuando la imagen carga bien, se quita el borde de relleno */
+.foto--cargada {
+  border-color: transparent;
+}
+
+.foto--grande {
+  flex: 1 1 360px;
+  min-height: 460px;
+}
+
+.foto--tarjeta {
+  height: 200px;
+  border-radius: 0;
+  border-width: 0 0 2px 0;
+}
+
+.foto--historia {
+  flex: 1 1 340px;
+  min-height: 360px;
+}
+
+.foto__etiqueta {
+  padding: 24px;
+  font-family: var(--fuente-titulos);
+  font-size: 20px;
+}
+
+/* ---------- 4) SECCIONES ---------- */
+/* Encabezado y navegación */
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--chocolate);
+}
+
+.logo__texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo__nombre {
+  font-family: var(--fuente-logo);
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.logo__subtitulo {
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+}
+
+.menu-principal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-principal a {
+  text-decoration: none;
+}
+
+/* Inicio (hero) */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  padding-top: 56px;
+  padding-bottom: 72px;
+}
+
+.hero__texto {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero__descripcion {
+  max-width: 520px;
+  font-size: 19px;
+}
+
+.hero__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hero__detalles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--salvia-texto);
+}
+
+/* Menú: tarjetas de productos */
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.tarjeta {
+  flex: 1 1 240px;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--crema);
+  border-radius: 14px;
+}
+
+.tarjeta__contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+}
+
+.tarjeta__contenido p {
+  font-size: 16px;
+}
+
+.tarjeta__precio {
+  font-weight: 700;
+  color: var(--caramelo-texto);
+}
+
+/* Cómo pedir: pasos */
+.pasos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.paso {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 3px solid var(--chocolate);
+}
+
+.paso__numero {
+  font-family: var(--fuente-titulos);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--caramelo-texto);
+}
+
+/* Nuestra historia */
+.historia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px;
+}
+
+.historia__texto {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.historia__texto p {
+  max-width: 560px;
+}
+
+.historia__pendiente {
+  color: #E3D3BC;
+}
+
+/* Pedidos por encargo */
+.encargos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+}
+
+.encargos__info {
+  flex: 1 1 340px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.encargos__info > p:not(.etiqueta) {
+  max-width: 480px;
+}
+
+.insignias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.insignias li {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--salvia);
+  color: var(--chocolate-oscuro);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Formulario */
+.formulario {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+  background: var(--beige);
+  border-radius: 16px;
+}
+
+.campos-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.campos-fila .campo {
+  flex: 1 1 180px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.campo label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--chocolate);
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #B9A07F;
+  border-radius: 8px;
+  background: var(--crema);
+  color: var(--chocolate-oscuro);
+  font: inherit;
+  font-size: 16px;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+/* Pie de página */
+.pie {
+  background: var(--chocolate-oscuro);
+  color: var(--crema);
+}
+
+.pie .contenedor {
+  padding-top: 56px;
+  padding-bottom: 32px;
+}
+
+.pie__columnas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.pie__marca {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pie__nombre {
+  font-family: var(--fuente-logo);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pie__subtitulo {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+}
+
+.pie__eslogan {
+  margin-top: 8px;
+  color: #E3D3BC;
+}
+
+.pie__datos {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Enlaces de "Escríbenos" (WhatsApp, Instagram, Correo) en blanco */
+.pie__datos a {
+  color: var(--crema);
+}
+
+.pie__datos a:hover {
+  color: var(--caramelo);
+}
+
+.pie__titulo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--caramelo);
+}
+
+.pie__derechos {
+  padding-top: 20px;
+  border-top: 1px solid #5C3A30;
+  font-size: 14px;
+  color: #D9C5AA;
+}
+</style>
+</head>
+
+<body>
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header class="encabezado contenedor">
+    <a href="#inicio" class="logo">
+      <svg class="logo__icono" width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="#4A2C23"
+        stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 30c-4-1-5-8 1-10 0-6 7-9 12-6 3-5 12-3 12 4 6 0 8 7 3 10" />
+        <path d="M16 30h32l-4 24H20z" />
+        <path d="M26 32l1.5 20M32 32v20M38 32l-1.5 20" stroke="#C98B4B" />
+        <path d="M32 10c-1-2.5-5-1.5-5 1.2 0 2.4 5 5.8 5 5.8s5-3.4 5-5.8c0-2.7-4-3.7-5-1.2z" fill="#C98B4B"
+          stroke="none" />
+      </svg>
+      <span class="logo__texto">
+        <span class="logo__nombre">Shu&amp;Yis</span>
+        <span class="logo__subtitulo">SWEET HOUSE</span>
+      </span>
+    </a>
+
+    <nav class="menu-principal">
+      <a href="#menu">Menú</a>
+      <a href="#pedir">Cómo pedir</a>
+      <a href="#historia">Nuestra historia</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#encargos" class="boton boton--oscuro boton--chico">Pedir por WhatsApp</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== INICIO ===================== -->
+    <section id="inicio" class="hero contenedor">
+      <div class="hero__texto">
+        <p class="etiqueta">REPOSTERÍA ARTESANAL</p>
+        <h1>Todo sabe mejor en buena compañía</h1>
+        <p class="hero__descripcion">
+          Postres hechos a mano, con cariño y con ganas de compartir.
+          Elige tu favorito, pídelo por WhatsApp y celebra con algo rico.
+        </p>
+        <div class="hero__botones">
+          <a href="#menu" class="boton boton--oscuro">Ver el menú</a>
+          <a href="#encargos" class="boton boton--caramelo">Hacer un pedido</a>
+        </div>
+        <ul class="hero__detalles">
+          <li>Hechos a mano</li>
+          <li>Pedidos por encargo</li>
+          <li>Para toda ocasión</li>
+        </ul>
+      </div>
+
+      <div class="foto foto--grande">
+        <span class="foto__etiqueta">[FOTO PRINCIPAL]</span>
+        <img src="fotos/principal.jpg" alt="Postre estrella de Shu&amp;Yis">
+      </div>
+    </section>
+
+    <!-- ===================== MENÚ ===================== -->
+    <section id="menu" class="seccion seccion--beige">
+      <div class="contenedor">
+        <header class="seccion__titulo">
+          <p class="etiqueta">NUESTRO MENÚ</p>
+          <h2>Dulces para cada momento</h2>
+        </header>
+
+        <div class="tarjetas">
+
+          <article class="tarjeta">
+            <div class="foto foto--tarjeta">
+              <span class="foto__etiqueta">[FOTO: BOLITAS]</span>
+              <img src="fotos/bolitas.jpg" alt="Bolitas">
+            </div>
+            <div class="tarjeta__contenido">
+              <h3>Bolitas</h3>
+              <p>Pequeños bocados dulces, ideales para regalar o compartir.</p>
+              <p class="tarjeta__precio">Desde $0,50</p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <div class="foto foto--tarjeta">
+              <span class="foto__etiqueta">[FOTO: TORTAS]</span>
+              <img src="fotos/tortas.jpg" alt="Tortas">
+            </div>
+            <div class="tarjeta__contenido">
+              <h3>Tortas</h3>
+              <p>Para cumpleaños y reuniones, del tamaño que necesites.</p>
+              <p class="tarjeta__precio">Desde $10,00</p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <div class="foto foto--tarjeta">
+              <span class="foto__etiqueta">[FOTO: CUPCAKES]</span>
+              <img src="fotos/cupcakes.jpg" alt="Cupcakes">
+            </div>
+            <div class="tarjeta__contenido">
+              <h3>Cupcakes</h3>
+              <p>Individuales, por unidad o en cajas para eventos.</p>
+              <p class="tarjeta__precio">Desde $2,50</p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <div class="foto foto--tarjeta">
+              <span class="foto__etiqueta">[FOTO: POSTRES]</span>
+              <img src="fotos/postres.jpg" alt="Postres por porciones">
+            </div>
+            <div class="tarjeta__contenido">
+              <h3>Postres por porciones</h3>
+              <p>Para un antojo del día o para llevar a casa.</p>
+              <p class="tarjeta__precio">Desde $4,50</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CÓMO PEDIR ===================== -->
+    <section id="pedir" class="seccion contenedor">
+      <header class="seccion__titulo">
+        <p class="etiqueta">CÓMO PEDIR</p>
+        <h2>Pedir es fácil, en tres pasos</h2>
+      </header>
+
+      <div class="pasos">
+        <article class="paso">
+          <p class="paso__numero">1</p>
+          <h3>Elige</h3>
+          <p>Mira el menú y decide qué se te antoja o para qué ocasión lo necesitas.</p>
+        </article>
+
+        <article class="paso">
+          <p class="paso__numero">2</p>
+          <h3>Escríbenos</h3>
+          <p>Cuéntanos por WhatsApp qué quieres, para cuántas personas y la fecha.</p>
+        </article>
+
+        <article class="paso">
+          <p class="paso__numero">3</p>
+          <h3>Recíbelo</h3>
+          <p>Confirmamos tu pedido y lo recibes o lo retiras en GYE.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== NUESTRA HISTORIA ===================== -->
+    <section id="historia" class="seccion seccion--oscura">
+      <div class="contenedor historia">
+        <div class="foto foto--historia foto--oscura">
+          <span class="foto__etiqueta">[FOTO DE SHU Y YIS]</span>
+          <img src="fotos/historia.jpg" alt="Shu y Yis cocinando juntos">
+        </div>
+
+        <div class="historia__texto">
+          <p class="etiqueta etiqueta--caramelo">NUESTRA HISTORIA</p>
+          <h2>Una amistad hecha receta</h2>
+          <p>
+            Shu&amp;Yis nace de una amistad que es como de familia. Empezamos a cocinar juntos
+            porque creemos que todo sabe mejor cuando se comparte, y ahora queremos compartirlo contigo.
+          </p>
+          <p class="historia__pendiente">
+            [Aquí pueden contar cómo empezó todo, en dos o tres frases con su propia voz.]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PEDIDOS POR ENCARGO ===================== -->
+    <section id="encargos" class="seccion contenedor encargos">
+      <div class="encargos__info">
+        <p class="etiqueta">PEDIDOS POR ENCARGO</p>
+        <h2>¿Tienes una celebración?</h2>
+        <p>
+          Cumpleaños, aniversarios, reuniones o regalos. Llena el formulario y te
+          respondemos por WhatsApp con las opciones y el precio.
+        </p>
+        <ul class="insignias">
+          <li>Pide con anticipación</li>
+          <li>Cupos limitados</li>
+        </ul>
+      </div>
+
+      <form id="formulario-pedido" class="formulario">
+        <div class="campo">
+          <label for="f-nombre">Tu nombre</label>
+          <input id="f-nombre" type="text" placeholder="Nombre y apellido">
+        </div>
+
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="f-producto">¿Qué te gustaría?</label>
+            <input id="f-producto" type="text" placeholder="Torta, bolitas, cupcakes...">
+          </div>
+          <div class="campo">
+            <label for="f-fecha">Fecha de entrega</label>
+            <input id="f-fecha" type="text" placeholder="Día y mes">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="f-detalle">Cuéntanos más</label>
+          <textarea id="f-detalle" rows="3" placeholder="Número de personas, sabores, dedicatoria..."></textarea>
+        </div>
+
+        <button type="submit" class="boton boton--oscuro">Enviar por WhatsApp</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA / CONTACTO ===================== -->
+  <footer id="contacto" class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <p class="pie__nombre">Shu&amp;Yis</p>
+          <p class="pie__subtitulo">SWEET HOUSE</p>
+          <p class="pie__eslogan">Todo sabe mejor en buena compañía.</p>
+        </div>
+
+        <div class="pie__datos">
+          <p class="pie__titulo">ESCRÍBENOS</p>
+          <a href="https://wa.me/593982732026" target="_blank">WhatsApp</a>
+          <a href="https://www.instagram.com/jcraks.08/" target="_blank">Instagram</a>
+          <a class="contact-cta" href="mailto:yisuskrais08@gmail.com">Correo</a>
+        </div>         
+
+        <div class="pie__datos">
+          <p class="pie__titulo">ATENCIÓN</p>
+          <p>08:00 AM - 06:00 PM</p>
+          <p>Entregas en Guayaquil</p>
+        </div>
+      </div>
+
+      <p class="pie__derechos">© 2026 Shu&amp;Yis Sweet House. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Funciones de la página (formulario y fotos) -->
+  <script>
+/* =========================================================
+   Shu&Yis Sweet House - Funciones de la página
+   ========================================================= */
+/* ---------- CONFIGURACIÓN ---------- */
+// Número de WhatsApp con código de país, SIN el signo "+" ni espacios.
+// Ecuador = 593. Ejemplo: "593991234567"
+const NUMERO_WHATSAPP = "593982732026";
+/* ---------- 1) FORMULARIO: ENVIAR PEDIDO POR WHATSAPP ---------- */
+const formulario = document.getElementById("formulario-pedido");
+
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault(); // evita que la página se recargue
+
+  const nombre = document.getElementById("f-nombre").value.trim();
+  const producto = document.getElementById("f-producto").value.trim();
+  const fecha = document.getElementById("f-fecha").value.trim();
+  const detalle = document.getElementById("f-detalle").value.trim();
+
+  if (!NUMERO_WHATSAPP) {
+    alert("Falta configurar el número de WhatsApp en script.js");
+    return;
+  }
+
+  const mensaje =
+    "Hola Shu&Yis, soy " + (nombre || "un cliente") +
+    ". Me gustaría pedir: " + (producto || "(por definir)") +
+    ". Fecha de entrega: " + (fecha || "(por definir)") + "." +
+    (detalle ? " Detalles: " + detalle : "");
+
+  const enlace = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+  window.open(enlace, "_blank");
+});
+
+/* ---------- 2) FOTOS: MOSTRAR IMAGEN O RECUADRO DE RELLENO ---------- */
+// Si la imagen existe en la carpeta "fotos", se muestra.
+// Si no existe, se quita y queda el recuadro con su etiqueta.
+document.querySelectorAll(".foto img").forEach(function (imagen) {
+  const contenedor = imagen.parentElement;
+
+  function marcarCargada() {
+    contenedor.classList.add("foto--cargada");
+  }
+
+  if (imagen.complete) {
+    // La imagen ya terminó de cargar (bien o con error)
+    if (imagen.naturalWidth > 0) {
+      marcarCargada();
+    } else {
+      imagen.remove();
+    }
+  } else {
+    imagen.addEventListener("load", marcarCargada);
+    imagen.addEventListener("error", function () {
+      imagen.remove();
+    });
+  }
+});
+</script>
+</body>
+
+</html>
